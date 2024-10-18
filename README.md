@@ -1,1 +1,1 @@
-![APISwaggerMoq](https://github.com/user-attachments/assets/82beb3d3-9899-4f78-8b37-71f7c950c4dd)
+![BlazorMauiAPI](https://github.com/user-attachments/assets/5bd4426e-c5c9-4241-b945-f6977debe914)
