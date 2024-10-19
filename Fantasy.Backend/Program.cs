@@ -14,6 +14,18 @@ builder.Services.AddSwaggerGen();
 //Conexion de la Base de Datos
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=DefaultConnection"));
 
+//Inicio de Area de los Serviciios
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin", builder =>
+    {
+        builder.WithOrigins("https://localhost:7037") // dominio de tu aplicación Blazor
+               .AllowAnyHeader()
+               .AllowAnyMethod()
+               .WithExposedHeaders(new string[] { "totalPaginas", "conteo" });
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,6 +34,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+//Llamar el Servicio de CORS
+app.UseCors("AllowSpecificOrigin");
 
 app.UseHttpsRedirection();
 
