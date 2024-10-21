@@ -59,10 +59,10 @@ public class CountriesController : ControllerBase
         return Ok(country);
     }
 
-    [HttpDelete("{id:int}")]
-    public async Task<ActionResult> DeleteAsync(int id)
+    [HttpDelete("{Id:int}")]
+    public async Task<ActionResult> DeleteAsync(int Id)
     {
-        var countries = await _context.Countries.FirstOrDefaultAsync(x => x.CountryId == id);
+        var countries = await _context.Countries.FirstOrDefaultAsync(x => x.CountryId == Id);
         if (countries is null)
         {
             return BadRequest("Registro No Encontrado");

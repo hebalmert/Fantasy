@@ -166,4 +166,10 @@
   <data name="Yes" xml:space="preserve">
     <value>Yes</value>
   </data>
+  <data name="RecordCreatedOk" xml:space="preserve">
+    <value>Record Created Ok</value>
+  </data>
+  <data name="RequiredField" xml:space="preserve">
+    <value>The {0} is Required</value>
+  </data>
 </root>

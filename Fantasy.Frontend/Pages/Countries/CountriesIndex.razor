@@ -21,8 +21,8 @@
                     <tr>
                         <td>@item.Name</td>
                         <td>
-                            <a class="btn btn-warning">@Localizer["Edit"]</a>
-                            <button class="btn btn-danger">@Localizer["Delete"]</button>
+                            <a class="btn btn-warning" href="/countries/edit/@item.CountryId">@Localizer["Edit"]</a>
+                            <button class="btn btn-danger" @onclick=@(()=> DeleteAsync(item))>@Localizer["Delete"]</button>
                         </td>
                     </tr>
                 }

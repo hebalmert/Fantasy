@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Fantasy.Frontend.Resources {
+namespace Fantasy.Shared.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Fantasy.Frontend.Resources {
         public static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fantasy.Frontend.Resources.Resource", typeof(Resource).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Fantasy.Shared.Resources.Resource", typeof(Resource).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
@@ -205,6 +205,15 @@ namespace Fantasy.Frontend.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record Created Ok.
+        /// </summary>
+        public static string RecordCreatedOk {
+            get {
+                return ResourceManager.GetString("RecordCreatedOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Records Deleted Successfully.
         /// </summary>
         public static string RecordDeleteOk {
@@ -219,6 +228,15 @@ namespace Fantasy.Frontend.Resources {
         public static string RecordSavedOk {
             get {
                 return ResourceManager.GetString("RecordSavedOk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The {0} is Required.
+        /// </summary>
+        public static string RequiredField {
+            get {
+                return ResourceManager.GetString("RequiredField", resourceCulture);
             }
         }
         
