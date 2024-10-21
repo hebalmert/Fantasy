@@ -1,19 +1,21 @@
-﻿using System.ComponentModel.DataAnnotations;
-using Fantasy.Shared.Resources;
+﻿using Fantasy.Shared.Resources;
+using System.ComponentModel.DataAnnotations;
 
 namespace Fantasy.Shared.Entities;
 
-public class Country
+public class Team
 {
-    public int CountryId { get; set; }
+    public int TeamId { get; set; }
 
     [Display(Name = "Country", ResourceType = typeof(Resource))]
     [MaxLength(100, ErrorMessageResourceName = "MaxLength", ErrorMessageResourceType = typeof(Resource))]
     [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Resource))]
     public string Name { get; set; } = null!;
 
-    //Relaciones
-    public ICollection<Team>? Teams { get; set; }
+    public int CountryId { get; set; }
 
-    public int TeamsCount => Teams == null ? 0 : Teams.Count;
+    public string? Image { get; set; }
+
+    //Relaciones
+    public Country Country { get; set; } = null!;
 }
