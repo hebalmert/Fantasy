@@ -1,15 +1,18 @@
+using Fantasy.Frontend.Resources;
 using Microsoft.AspNetCore.Components;
+using Microsoft.Extensions.Localization;
 
-namespace Fantasy.Frontend.Shared
+namespace Fantasy.Frontend.Shared;
+
+public partial class GenericList<Titem>
 {
-    public partial class GenericList<Titem>
-    {
-        [Parameter] public RenderFragment? Loading { get; set; }
+    [Inject] private IStringLocalizer<Resource> Localizer { get; set; } = null!;
 
-        [Parameter] public RenderFragment? NoRecords { get; set; }
+    [Parameter] public RenderFragment? Loading { get; set; }
 
-        [Parameter, EditorRequired] public RenderFragment Body { get; set; } = null!;
+    [Parameter] public RenderFragment? NoRecords { get; set; }
 
-        [Parameter, EditorRequired] public List<Titem> MyList { get; set; } = null!;
-    }
+    [Parameter, EditorRequired] public RenderFragment Body { get; set; } = null!;
+
+    [Parameter, EditorRequired] public List<Titem> MyList { get; set; } = null!;
 }

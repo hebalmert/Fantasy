@@ -1,3 +1,4 @@
+using CurrieTechnologies.Razor.SweetAlert2;
 using Fantasy.Frontend;
 using Fantasy.Frontend.Repositories;
 using Microsoft.AspNetCore.Components.Web;
@@ -18,4 +19,6 @@ await builder.Build().RunAsync();
 void ConfigureServices(IServiceCollection services)
 {
     services.AddScoped<IRepository, Repository>();
+    services.AddLocalization();
+    services.AddSweetAlert2();
 }
