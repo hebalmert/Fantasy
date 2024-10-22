@@ -24,7 +24,7 @@ public partial class CountryCreate
         if (responseHttp.Error)
         {
             var messageError = await responseHttp.GetErrorMessageAsync();
-            await Swal.FireAsync(Localizer["Error"], messageError, SweetAlertIcon.Error);
+            await Swal.FireAsync(Localizer["Error"], Localizer[messageError!], SweetAlertIcon.Error);
             return;
         }
 

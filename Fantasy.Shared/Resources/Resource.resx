@@ -172,4 +172,19 @@
   <data name="RequiredField" xml:space="preserve">
     <value>The {0} is Required</value>
   </data>
+  <data name="MaxLength" xml:space="preserve">
+    <value>The Field {0} cannot be longer than {1} characteres</value>
+  </data>
+  <data name="Team" xml:space="preserve">
+    <value>Team</value>
+  </data>
+  <data name="ERR001" xml:space="preserve">
+    <value>Record not Found</value>
+  </data>
+  <data name="ERR002" xml:space="preserve">
+    <value>Cannot be deleted because it has related records</value>
+  </data>
+  <data name="ERR003" xml:space="preserve">
+    <value>The record you are trying to create already exist</value>
+  </data>
 </root>

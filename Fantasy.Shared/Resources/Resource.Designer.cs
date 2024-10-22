@@ -151,6 +151,33 @@ namespace Fantasy.Shared.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Record not Found.
+        /// </summary>
+        public static string ERR001 {
+            get {
+                return ResourceManager.GetString("ERR001", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot be deleted because it has related records.
+        /// </summary>
+        public static string ERR002 {
+            get {
+                return ResourceManager.GetString("ERR002", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The record you are trying to create already exist.
+        /// </summary>
+        public static string ERR003 {
+            get {
+                return ResourceManager.GetString("ERR003", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Error.
         /// </summary>
         public static string Error {
@@ -183,6 +210,15 @@ namespace Fantasy.Shared.Resources {
         public static string LeaveAndLoseChanges {
             get {
                 return ResourceManager.GetString("LeaveAndLoseChanges", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The Field {0} cannot be longer than {1} characteres.
+        /// </summary>
+        public static string MaxLength {
+            get {
+                return ResourceManager.GetString("MaxLength", resourceCulture);
             }
         }
         
@@ -264,6 +300,15 @@ namespace Fantasy.Shared.Resources {
         public static string Subtitle {
             get {
                 return ResourceManager.GetString("Subtitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Team.
+        /// </summary>
+        public static string Team {
+            get {
+                return ResourceManager.GetString("Team", resourceCulture);
             }
         }
         
