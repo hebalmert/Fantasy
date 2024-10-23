@@ -12,6 +12,7 @@
             <thead>
                 <tr>
                     <td>@Localizer["Country"]</td>
+                    <td># @Localizer["Teams"]</td>
                     <td></td>
                 </tr>
             </thead>
@@ -20,6 +21,7 @@
                 {
                     <tr>
                         <td>@item.Name</td>
+                        <td>@item.TeamsCount</td>
                         <td>
                             <a class="btn btn-warning" href="/countries/edit/@item.CountryId">@Localizer["Edit"]</a>
                             <button class="btn btn-danger" @onclick=@(()=> DeleteAsync(item))>@Localizer["Delete"]</button>

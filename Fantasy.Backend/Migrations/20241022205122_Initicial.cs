@@ -5,11 +5,24 @@
 namespace Fantasy.Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class NewTeamCascadingDeleteCancel : Migration
+    public partial class Initicial : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    CountryId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.CountryId);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Teams",
                 columns: table => new
@@ -32,6 +45,12 @@ namespace Fantasy.Backend.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_Countries_Name",
+                table: "Countries",
+                column: "Name",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Teams_CountryId_Name",
                 table: "Teams",
                 columns: new[] { "CountryId", "Name" },
@@ -43,6 +62,9 @@ namespace Fantasy.Backend.Migrations
         {
             migrationBuilder.DropTable(
                 name: "Teams");
+
+            migrationBuilder.DropTable(
+                name: "Countries");
         }
     }
 }

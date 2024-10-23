@@ -17,9 +17,13 @@ builder.Services.AddSwaggerGen();
 
 //Conexion de la Base de Datos
 builder.Services.AddDbContext<DataContext>(x => x.UseSqlServer("name=DefaultConnection"));
+builder.Services.AddTransient<SeedDb>();
 
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
+
+builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
+builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
 //Inicio de Area de los Serviciios
 builder.Services.AddCors(options =>
@@ -34,6 +38,16 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+//Inyeccion del SeeDB
+SeedData(app);
+
+void SeedData(WebApplication app)
+{
+    var scopedFactory = app.Services.GetService<IServiceScopeFactory>();
+    using var scope = scopedFactory!.CreateScope();
+    var service = scope.ServiceProvider.GetService<SeedDb>();
+    service!.SeedAsync().Wait();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
