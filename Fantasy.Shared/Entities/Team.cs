@@ -16,6 +16,8 @@ public class Team
 
     public string? Image { get; set; }
 
+    public string ImageFull => string.IsNullOrEmpty(Image) ? "/images/NoImage.png" : Image;
+
     //Relaciones
     public Country? Country { get; set; }
 }

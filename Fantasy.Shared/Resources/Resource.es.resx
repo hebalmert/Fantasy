@@ -193,4 +193,7 @@
   <data name="ERR005" xml:space="preserve">
     <value>El Codigo del equipo no es Valido</value>
   </data>
+  <data name="Teams" xml:space="preserve">
+    <value>Equipos</value>
+  </data>
 </root>

@@ -6,15 +6,10 @@ namespace Fantasy.Backend.Helpers;
 public class FileStorage : IFileStorage
 {
     private readonly string connectionString;
-    private readonly IWebHostEnvironment _env;
-    private readonly IHttpContextAccessor _httpContextAccessor;
 
-    public FileStorage(IConfiguration configuration, IWebHostEnvironment env,
-            IHttpContextAccessor httpContextAccessor)
+    public FileStorage(IConfiguration configuration)
     {
         connectionString = configuration.GetConnectionString("AzureStorage")!;
-        _env = env;
-        _httpContextAccessor = httpContextAccessor;
     }
 
     public async Task<string> SaveFileAsync(byte[] content, string extention, string containerName)

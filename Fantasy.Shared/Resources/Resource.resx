@@ -193,4 +193,7 @@
   <data name="ERR005" xml:space="preserve">
     <value>The team Id is not Valid</value>
   </data>
+  <data name="Teams" xml:space="preserve">
+    <value>Teams</value>
+  </data>
 </root>

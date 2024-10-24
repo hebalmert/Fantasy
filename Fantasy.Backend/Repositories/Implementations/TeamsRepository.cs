@@ -1,21 +1,19 @@
-﻿using Azure.Core;
-using Fantasy.Backend.Data;
+﻿using Fantasy.Backend.Data;
 using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Interfaces;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
 using Fantasy.Shared.Responses;
-using Microsoft.AspNetCore.Routing.Template;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fantasy.Backend.Repositories.Implementations;
 
-public class TeamRepository : GenericRepository<Team>, ITeamRepository
+public class TeamsRepository : GenericRepository<Team>, ITeamsRepository
 {
     private readonly DataContext _context;
     private readonly IFileStorage _fileStorage;
 
-    public TeamRepository(DataContext context, IFileStorage fileStorage) : base(context)
+    public TeamsRepository(DataContext context, IFileStorage fileStorage) : base(context)
     {
         _context = context;
         _fileStorage = fileStorage;

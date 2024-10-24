@@ -9,9 +9,9 @@ namespace Fantasy.Backend.Controllers
     [ApiController]
     public class TeamsController : GenericController<Team>
     {
-        private readonly ITeamUnitOfWork _teamUnitOfWork;
+        private readonly ITeamsUnitOfWork _teamUnitOfWork;
 
-        public TeamsController(IGenericUnitOfWork<Team> unitOfWork, ITeamUnitOfWork teamUnitOfWork) : base(unitOfWork)
+        public TeamsController(IGenericUnitOfWork<Team> unitOfWork, ITeamsUnitOfWork teamUnitOfWork) : base(unitOfWork)
         {
             _teamUnitOfWork = teamUnitOfWork;
         }

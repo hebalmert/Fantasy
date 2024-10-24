@@ -4,7 +4,7 @@ using Fantasy.Shared.Responses;
 
 namespace Fantasy.Backend.UnitsOfWork.Interfaces;
 
-public interface ITeamUnitOfWork
+public interface ITeamsUnitOfWork
 {
     Task<IEnumerable<Team>> GetComboAsync(int countryId);
 

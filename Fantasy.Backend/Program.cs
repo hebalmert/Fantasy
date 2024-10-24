@@ -26,10 +26,10 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
-builder.Services.AddScoped<ITeamRepository, TeamRepository>();
-builder.Services.AddScoped<ITeamUnitOfWork, TeamsUnitOfWork>();
-
 builder.Services.AddScoped<IFileStorage, FileStorage>();
+
+builder.Services.AddScoped<ITeamsRepository, TeamsRepository>();
+builder.Services.AddScoped<ITeamsUnitOfWork, TeamsUnitOfWork>();
 
 //Inicio de Area de los Serviciios
 builder.Services.AddCors(options =>
