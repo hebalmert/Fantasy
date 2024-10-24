@@ -187,4 +187,10 @@
   <data name="ERR003" xml:space="preserve">
     <value>Ya existe el registro que estas intentando crear</value>
   </data>
+  <data name="ERR004" xml:space="preserve">
+    <value>El Codigo del Pais no es Valido</value>
+  </data>
+  <data name="ERR005" xml:space="preserve">
+    <value>El Codigo del equipo no es Valido</value>
+  </data>
 </root>

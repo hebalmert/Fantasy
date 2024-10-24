@@ -1,4 +1,5 @@
 using Fantasy.Backend.Data;
+using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Implementations;
 using Fantasy.Backend.Repositories.Interfaces;
 using Fantasy.Backend.UnitsOfWork.Implementations;
@@ -24,6 +25,11 @@ builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepositor
 
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
+
+builder.Services.AddScoped<ITeamRepository, TeamRepository>();
+builder.Services.AddScoped<ITeamUnitOfWork, TeamsUnitOfWork>();
+
+builder.Services.AddScoped<IFileStorage, FileStorage>();
 
 //Inicio de Area de los Serviciios
 builder.Services.AddCors(options =>
