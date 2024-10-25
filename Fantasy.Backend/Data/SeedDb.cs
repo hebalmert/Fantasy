@@ -1,4 +1,5 @@
-﻿using Fantasy.Shared.Entities;
+﻿using Fantasy.Backend.Helpers;
+using Fantasy.Shared.Entities;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fantasy.Backend.Data;
@@ -6,10 +7,12 @@ namespace Fantasy.Backend.Data;
 public class SeedDb
 {
     private readonly DataContext _context;
+    private readonly IFileStorage _fileStorage;
 
-    public SeedDb(DataContext context)
+    public SeedDb(DataContext context, IFileStorage fileStorage)
     {
         _context = context;
+        _fileStorage = fileStorage;
     }
 
     public async Task SeedAsync()
@@ -19,30 +22,31 @@ public class SeedDb
         await CheckTeamsAsync();
     }
 
-    private async Task CheckTeamsAsync()
+    private async Task CheckCountriesAsync()
     {
         if (!_context.Countries.Any())
         {
-            var countriesSqlScript = File.ReadAllText("Data\\Countries.sql");
-            await _context.Database.ExecuteSqlRawAsync(countriesSqlScript);
+            var countriesSQLScript = File.ReadAllText("Data\\Countries.sql");
+            await _context.Database.ExecuteSqlRawAsync(countriesSQLScript);
         }
     }
 
-    private async Task CheckCountriesAsync()
+    private async Task CheckTeamsAsync()
     {
         if (!_context.Teams.Any())
         {
-            foreach (var item in _context.Countries)
+            foreach (var country in _context.Countries)
             {
-                _context.Teams.Add(new Team { Name = item.Name, Country = item });
-                if (item.Name == "Colombia")
+                var imagePath = string.Empty;
+                var filePath = $"wwwroot\\Images\\Flags\\{country.Name}.png";
+                if (File.Exists(filePath))
                 {
-                    _context.Teams.Add(new Team { Name = "Medellin", Country = item });
-                    _context.Teams.Add(new Team { Name = "Nacional", Country = item });
-                    _context.Teams.Add(new Team { Name = "Millonarios", Country = item });
-                    _context.Teams.Add(new Team { Name = "Junior", Country = item });
+                    var fileBytes = File.ReadAllBytes(filePath);
+                    imagePath = await _fileStorage.SaveFileAsync(fileBytes, ".jpg", "teams");
                 }
+                _context.Teams.Add(new Team { Name = country.Name, Country = country!, Image = imagePath });
             }
+
             await _context.SaveChangesAsync();
         }
     }

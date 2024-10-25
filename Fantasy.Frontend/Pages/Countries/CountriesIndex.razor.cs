@@ -73,6 +73,6 @@ public partial class CountriesIndex
             Timer = 2000
         });
 
-        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordCreatedOk"]);
+        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordDeleteOk"]);
     }
 }

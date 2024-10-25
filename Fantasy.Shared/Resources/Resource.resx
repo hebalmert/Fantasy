@@ -196,4 +196,13 @@
   <data name="Teams" xml:space="preserve">
     <value>Teams</value>
   </data>
+  <data name="SelectFile" xml:space="preserve">
+    <value>Select a file...</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search...</value>
+  </data>
+  <data name="SelectCountry" xml:space="preserve">
+    <value>-- Select Country --</value>
+  </data>
 </root>

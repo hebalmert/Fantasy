@@ -53,7 +53,7 @@ public partial class TeamsIndex
         {
             if (responseHttp.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
             {
-                NavigationManager.NavigateTo("/Countries");
+                NavigationManager.NavigateTo("/teams");
             }
             else
             {
@@ -73,6 +73,6 @@ public partial class TeamsIndex
             Timer = 2000
         });
 
-        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordCreatedOk"]);
+        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordDeleteOk"]);
     }
 }

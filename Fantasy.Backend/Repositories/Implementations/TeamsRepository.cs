@@ -31,7 +31,7 @@ public class TeamsRepository : GenericRepository<Team>, ITeamsRepository
 
     public override async Task<ActionResponse<Team>> GetAsync(int id)
     {
-        var team = await _context.Teams.Include(x => x.CountryId).FirstOrDefaultAsync(x => x.TeamId == id);
+        var team = await _context.Teams.Include(x => x.Country).FirstOrDefaultAsync(x => x.TeamId == id);
         if (team is null)
         {
             return new ActionResponse<Team>

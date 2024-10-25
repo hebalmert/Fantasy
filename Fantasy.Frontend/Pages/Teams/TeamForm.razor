@@ -1,0 +1,36 @@
+﻿<NavigationLock OnBeforeInternalNavigation="OnBeforeInternalNavigation" />
+
+<EditForm EditContext="editContext" OnValidSubmit="OnValidSumit">
+    <DataAnnotationsValidator />
+    <div class="mb-3">
+        <label>@Localizer["Team"]:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@TeamDTO.Name" />
+            <ValidationMessage For="@(()=> TeamDTO.Name)" />
+        </div>
+    </div>
+    <div class="mb-3">
+        <label>@Localizer["Country"]:</label>
+        <div>
+            <select class="form-select" @bind="TeamDTO.CountryId">
+                <option value="0">@Localizer["SelectCountry"]</option>
+                @if (countries is not null)
+                {
+                    foreach (var item in countries)
+                    {
+                        <option value="@item.CountryId">@item.Name</option>
+                    }
+                }
+            </select>
+            <ValidationMessage For="@(()=> TeamDTO.CountryId)"/>
+        </div>
+    </div>
+    <div class="mb-3">
+        <InputImg Label=@Localizer["Image"] ImageSelect="ImageSelected" ImageUrl="@imageUrl"/>
+    </div>
+
+    <button class="btn btn-primary" type="submit">@Localizer["SaveChanges"]</button>
+    <button class="btn btn-success" @onclick="ReturnAction">@Localizer["Return"]</button>
+</EditForm>
+
+
