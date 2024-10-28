@@ -31,6 +31,8 @@ builder.Services.AddScoped<IFileStorage, FileStorage>();
 builder.Services.AddScoped<ITeamsRepository, TeamsRepository>();
 builder.Services.AddScoped<ITeamsUnitOfWork, TeamsUnitOfWork>();
 
+builder.Services.AddHttpContextAccessor();
+
 //Inicio de Area de los Serviciios
 builder.Services.AddCors(options =>
 {
@@ -39,7 +41,7 @@ builder.Services.AddCors(options =>
         builder.WithOrigins("https://localhost:7037") // dominio de tu aplicación Blazor
                .AllowAnyHeader()
                .AllowAnyMethod()
-               .WithExposedHeaders(new string[] { "totalPaginas", "conteo" });
+               .WithExposedHeaders(new string[] { "totalPages", "counting" });
     });
 });
 
