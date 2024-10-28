@@ -3,6 +3,7 @@ using Fantasy.Frontend;
 using Fantasy.Frontend.Repositories;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
+using MudBlazor.Services;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -21,4 +22,5 @@ void ConfigureServices(IServiceCollection services)
     services.AddScoped<IRepository, Repository>();
     services.AddLocalization();
     services.AddSweetAlert2();
+    services.AddMudServices(); //Para Implementar MudBlazor
 }
