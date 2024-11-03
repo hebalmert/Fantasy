@@ -1,7 +1,8 @@
 ﻿@page "/countries/create"
 
-<h3>@Localizer["Create"] @Localizer["Country"]</h3>
 
-<CountryForm @ref="CountryForm" Country="Country" OnValidSubmit="CreateAsync" ReturnAction="Return">
-</CountryForm>
-
+﻿<MudDialog>
+    <DialogContent>
+        <CountryForm @ref="CountryForm" Country="Country" OnValidSubmit="CreateAsync" ReturnAction="Return" />
+    </DialogContent>
+</MudDialog>

@@ -223,4 +223,7 @@
   <data name="No" xml:space="preserve">
     <value>No</value>
   </data>
+  <data name="PleaseWait" xml:space="preserve">
+    <value>Please Wait...</value>
+  </data>
 </root>

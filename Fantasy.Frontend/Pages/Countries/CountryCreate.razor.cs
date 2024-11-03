@@ -4,6 +4,7 @@ using Fantasy.Shared.Resources;
 using Fantasy.Shared.Entities;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using MudBlazor;
 
 namespace Fantasy.Frontend.Pages.Countries;
 
@@ -15,7 +16,7 @@ public partial class CountryCreate
 
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
-    [Inject] private SweetAlertService Swal { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IStringLocalizer<Resource> Localizer { get; set; } = null!;
 
     private async Task CreateAsync()
@@ -24,21 +25,12 @@ public partial class CountryCreate
         if (responseHttp.Error)
         {
             var messageError = await responseHttp.GetErrorMessageAsync();
-            await Swal.FireAsync(Localizer["Error"], Localizer[messageError!], SweetAlertIcon.Error);
+            Snackbar.Add(Localizer[messageError!], Severity.Error);
             return;
         }
 
         Return();
-
-        var toast = Swal.Mixin(new SweetAlertOptions
-        {
-            Toast = true,
-            Position = SweetAlertPosition.BottomEnd,
-            ShowConfirmButton = true,
-            Timer = 2000
-        });
-
-        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordCreatedOk"]);
+        Snackbar.Add(Localizer["RecordCreatedOk"], Severity.Success);
     }
 
     private void Return()

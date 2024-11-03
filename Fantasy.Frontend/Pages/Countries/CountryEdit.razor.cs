@@ -4,10 +4,11 @@ using Fantasy.Shared.Entities;
 using Fantasy.Shared.Resources;
 using Microsoft.AspNetCore.Components;
 using Microsoft.Extensions.Localization;
+using MudBlazor;
 
 namespace Fantasy.Frontend.Pages.Countries;
 
-public partial class CountriesEdit
+public partial class CountryEdit
 {
     private CountryForm? CountryForm { get; set; }
 
@@ -15,7 +16,7 @@ public partial class CountriesEdit
 
     [Inject] private IRepository Repository { get; set; } = null!;
     [Inject] private NavigationManager NavigationManager { get; set; } = null!;
-    [Inject] private SweetAlertService Swal { get; set; } = null!;
+    [Inject] private ISnackbar Snackbar { get; set; } = null!;
     [Inject] private IStringLocalizer<Resource> Localizer { get; set; } = null!;
 
     [Parameter] public int Id { get; set; }
@@ -32,8 +33,7 @@ public partial class CountriesEdit
             else
             {
                 var messageError = await responseHttp.GetErrorMessageAsync();
-                await Swal.FireAsync(Localizer["Error"], Localizer[messageError!], SweetAlertIcon.Error);
-                return;
+                Snackbar.Add(messageError!, Severity.Error);
             }
         }
         else
@@ -48,21 +48,14 @@ public partial class CountriesEdit
         if (responseHttp.Error)
         {
             var messageError = await responseHttp.GetErrorMessageAsync();
-            await Swal.FireAsync(Localizer["Error"], messageError, SweetAlertIcon.Error);
+            Snackbar.Add(messageError!, Severity.Error);
             return;
         }
 
         Return();
 
-        var toast = Swal.Mixin(new SweetAlertOptions
-        {
-            Toast = true,
-            Position = SweetAlertPosition.BottomEnd,
-            ShowConfirmButton = true,
-            Timer = 2000
-        });
-
-        await toast.FireAsync(icon: SweetAlertIcon.Success, message: Localizer["RecordSavedOk"]);
+        Return();
+        Snackbar.Add(Localizer["RecordSavedOk"], Severity.Success);
     }
 
     private void Return()

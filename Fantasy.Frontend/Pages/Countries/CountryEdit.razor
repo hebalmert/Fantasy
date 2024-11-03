@@ -1,0 +1,14 @@
+﻿@page "/countries/edit/{Id:int}"
+
+@if (Country is null)
+{
+    <Loading />
+}
+else
+{
+    <MudDialog>
+        <DialogContent>
+            <CountryForm @ref="CountryForm" Country="Country" OnValidSubmit="EditAsync" ReturnAction="Return" />
+        </DialogContent>
+    </MudDialog>
+}
