@@ -5,7 +5,7 @@
 namespace Fantasy.Backend.Migrations
 {
     /// <inheritdoc />
-    public partial class Initicial : Migration
+    public partial class initialdb : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

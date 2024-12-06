@@ -1,4 +1,3 @@
-using CurrieTechnologies.Razor.SweetAlert2;
 using Fantasy.Frontend.Repositories;
 using Fantasy.Shared.Resources;
 using Fantasy.Shared.Entities;

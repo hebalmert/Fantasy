@@ -226,4 +226,19 @@
   <data name="PleaseWait" xml:space="preserve">
     <value>Por Favor Espere...</value>
   </data>
+  <data name="Admin" xml:space="preserve">
+    <value>Administrador</value>
+  </data>
+  <data name="User" xml:space="preserve">
+    <value>Usuario</value>
+  </data>
+  <data name="FisrtName" xml:space="preserve">
+    <value>Nombres</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Apellidos</value>
+  </data>
+  <data name="UserType" xml:space="preserve">
+    <value>Tipo Usuario</value>
+  </data>
 </root>

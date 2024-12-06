@@ -12,20 +12,20 @@ namespace Fantasy.Frontend.Pages.Teams;
 
 public partial class TeamForm
 {
-    [Inject] private SweetAlertService Swal { get; set; } = null!;
-    [Inject] private IStringLocalizer<Resource> Localizer { get; set; } = null!;
-    [Inject] private IRepository Repository { get; set; } = null!;
-
     private EditContext editContext = null!;
     private Country selectedCountry = new();
     private List<Country>? countries;
     private string? imageUrl;
 
+    [Inject] private SweetAlertService SweetAlertService { get; set; } = null!;
+    [Inject] private IStringLocalizer<Resource> Localizer { get; set; } = null!;
+    [Inject] private IRepository Repository { get; set; } = null!;
+
     [EditorRequired, Parameter] public TeamDTO TeamDTO { get; set; } = null!;
-    [EditorRequired, Parameter] public EventCallback OnValidSumit { get; set; }
+    [EditorRequired, Parameter] public EventCallback OnValidSubmit { get; set; }
     [EditorRequired, Parameter] public EventCallback ReturnAction { get; set; }
 
-    public bool FormPostSuccessfully { get; set; } = false;
+    public bool FormPostedSuccessfully { get; set; } = false;
 
     protected override void OnInitialized()
     {
@@ -53,33 +53,35 @@ public partial class TeamForm
         if (responseHttp.Error)
         {
             var message = await responseHttp.GetErrorMessageAsync();
-            await Swal.FireAsync("Error", message, SweetAlertIcon.Error);
+            await SweetAlertService.FireAsync("Error", message, SweetAlertIcon.Error);
             return;
         }
 
         countries = responseHttp.Response;
     }
 
-    private void ImageSelected(string imageBase64)
+    private void ImageSelected(string imagenBase64)
     {
-        TeamDTO.Image = imageBase64;
+        TeamDTO.Image = imagenBase64;
         imageUrl = null;
     }
 
     private async Task OnBeforeInternalNavigation(LocationChangingContext context)
     {
         var formWasEdited = editContext.IsModified();
-        if (!formWasEdited || FormPostSuccessfully)
+
+        if (!formWasEdited || FormPostedSuccessfully)
         {
             return;
         }
 
-        var result = await Swal.FireAsync(new SweetAlertOptions
+        var result = await SweetAlertService.FireAsync(new SweetAlertOptions
         {
             Title = Localizer["Confirmation"],
             Text = Localizer["LeaveAndLoseChanges"],
             Icon = SweetAlertIcon.Warning,
-            ShowCancelButton = true
+            ShowCancelButton = true,
+            CancelButtonText = Localizer["Cancel"],
         });
 
         var confirm = !string.IsNullOrEmpty(result.Value);
@@ -89,5 +91,24 @@ public partial class TeamForm
         }
 
         context.PreventNavigation();
+    }
+
+    private async Task<IEnumerable<Country>> SearchCountry(string searchText, CancellationToken cancellationToken)
+    {
+        await Task.Delay(5);
+        if (string.IsNullOrWhiteSpace(searchText))
+        {
+            return countries!;
+        }
+
+        return countries!
+            .Where(x => x.Name.Contains(searchText, StringComparison.InvariantCultureIgnoreCase))
+            .ToList();
+    }
+
+    private void CountryChanged(Country country)
+    {
+        selectedCountry = country;
+        TeamDTO.CountryId = country.CountryId;
     }
 }
