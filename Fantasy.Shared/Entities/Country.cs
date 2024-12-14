@@ -15,5 +15,7 @@ public class Country
     //Relaciones
     public ICollection<Team>? Teams { get; set; }
 
+    public ICollection<User>? Users { get; set; }
+
     public int TeamsCount => Teams == null ? 0 : Teams.Count;
 }

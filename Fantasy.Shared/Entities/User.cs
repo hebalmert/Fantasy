@@ -23,12 +23,12 @@ public class User : IdentityUser
     [Display(Name = "UserType", ResourceType = typeof(Resource))]
     public UserType UserType { get; set; }
 
-    [Required(ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Resource))]
-    public Country Country { get; set; } = null!;
-
     [Display(Name = "Country", ResourceType = typeof(Resource))]
     [Range(1, int.MaxValue, ErrorMessageResourceName = "RequiredField", ErrorMessageResourceType = typeof(Resource))]
     public int CountryId { get; set; }
+
+    //Virtuals Connection
+    public Country Country { get; set; } = null!;
 
     [Display(Name = "User", ResourceType = typeof(Resource))]
     public string FullName => $"{FirstName} {LastName}";
