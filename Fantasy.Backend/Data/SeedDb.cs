@@ -1,5 +1,7 @@
 ﻿using Fantasy.Backend.Helpers;
+using Fantasy.Backend.UnitsOfWork.Interfaces;
 using Fantasy.Shared.Entities;
+using Fantasy.Shared.Enums;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fantasy.Backend.Data;
@@ -8,11 +10,13 @@ public class SeedDb
 {
     private readonly DataContext _context;
     private readonly IFileStorage _fileStorage;
+    private readonly IUserUnitOfWork _userUnitOfWork;
 
-    public SeedDb(DataContext context, IFileStorage fileStorage)
+    public SeedDb(DataContext context, IFileStorage fileStorage, IUserUnitOfWork userUnitOfWork)
     {
         _context = context;
         _fileStorage = fileStorage;
+        _userUnitOfWork = userUnitOfWork;
     }
 
     public async Task SeedAsync()
@@ -20,6 +24,38 @@ public class SeedDb
         await _context.Database.EnsureCreatedAsync();
         await CheckCountriesAsync();
         await CheckTeamsAsync();
+        await CheckRolesAsync();
+        await CheckUserAsync("Hebert", "Merchan", "nexxtcargo@gmail.com", "768 555 5555", UserType.Admin);
+    }
+
+    private async Task CheckRolesAsync()
+    {
+        await _userUnitOfWork.CheckRoleAsync(UserType.Admin.ToString());
+        await _userUnitOfWork.CheckRoleAsync(UserType.User.ToString());
+    }
+
+    private async Task<User> CheckUserAsync(string firstName, string lastName, string email, string phone, UserType userType)
+    {
+        var user = await _userUnitOfWork.GetUserAsync(email);
+        if (user == null)
+        {
+            var country = await _context.Countries.FirstOrDefaultAsync(x => x.Name == "Colombia");
+            user = new User
+            {
+                FirstName = firstName,
+                LastName = lastName,
+                Email = email,
+                UserName = email,
+                PhoneNumber = phone,
+                Country = country!,
+                UserType = userType
+            };
+
+            await _userUnitOfWork.AddUserAsync(user, "123456");
+            await _userUnitOfWork.AddUserToRoleAsync(user, userType.ToString());
+        }
+
+        return user;
     }
 
     private async Task CheckCountriesAsync()

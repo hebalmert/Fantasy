@@ -4,6 +4,8 @@ using Fantasy.Backend.Repositories.Implementations;
 using Fantasy.Backend.Repositories.Interfaces;
 using Fantasy.Backend.UnitsOfWork.Implementations;
 using Fantasy.Backend.UnitsOfWork.Interfaces;
+using Fantasy.Shared.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json.Serialization;
 
@@ -23,6 +25,9 @@ builder.Services.AddTransient<SeedDb>();
 builder.Services.AddScoped(typeof(IGenericUnitOfWork<>), typeof(GenericUnitOfWork<>));
 builder.Services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
 
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserUnitOfWork, UserUnitOfWork>();
+
 builder.Services.AddScoped<ICountriesRepository, CountriesRepository>();
 builder.Services.AddScoped<ICountriesUnitOfWork, CountriesUnitOfWork>();
 
@@ -30,6 +35,18 @@ builder.Services.AddScoped<IFileStorage, FileStorage>();
 
 builder.Services.AddScoped<ITeamsRepository, TeamsRepository>();
 builder.Services.AddScoped<ITeamsUnitOfWork, TeamsUnitOfWork>();
+
+//Vamos agregar la validacion de usuarios
+builder.Services.AddIdentity<User, IdentityRole>(x =>
+{
+    x.User.RequireUniqueEmail = true;
+    x.Password.RequireDigit = false;
+    x.Password.RequiredUniqueChars = 0;
+    x.Password.RequireLowercase = false;
+    x.Password.RequireUppercase = false;
+    x.Password.RequireNonAlphanumeric = false;
+}).AddEntityFrameworkStores<DataContext>()
+  .AddDefaultTokenProviders();
 
 builder.Services.AddHttpContextAccessor();
 

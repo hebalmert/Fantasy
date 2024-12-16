@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fantasy.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241214014717_IdentityBoth")]
-    partial class IdentityBoth
+    [Migration("20241216012215_initialDb")]
+    partial class initialDb
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
