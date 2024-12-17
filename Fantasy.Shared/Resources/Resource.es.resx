@@ -241,4 +241,16 @@
   <data name="UserType" xml:space="preserve">
     <value>Tipo Usuario</value>
   </data>
+  <data name="NotFound" xml:space="preserve">
+    <value>No Encontrado</value>
+  </data>
+  <data name="NothingInRoute" xml:space="preserve">
+    <value>Lo sentimos no hay nada en la Ruta</value>
+  </data>
+  <data name="Authorizing" xml:space="preserve">
+    <value>Autorizando...</value>
+  </data>
+  <data name="NotAuthorized" xml:space="preserve">
+    <value>No estas autorizado para ver este contenido...!</value>
+  </data>
 </root>

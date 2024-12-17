@@ -2,8 +2,8 @@
     <MudNavLink Href="/" Match="NavLinkMatch.All" Icon="@Icons.Material.Rounded.Home">@Localizer["Home"]</MudNavLink>
     <MudDivider />
 
-@*     <AuthorizeView Roles="Admin">
-        <Authorized> *@
+    <AuthorizeView Roles="Admin">
+        <Authorized>
             <MudNavLink Href="/countries" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Public">@Localizer["Countries"]</MudNavLink>
             <MudDivider />
             <MudNavLink Href="/teams" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Groups">@Localizer["Teams"]</MudNavLink>
@@ -12,12 +12,12 @@
             <MudDivider />
             <MudNavLink Href="/users" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.People">@Localizer["Users"]</MudNavLink>
             <MudDivider />
-@*         </Authorized>
+        </Authorized>
     </AuthorizeView>
-    <AuthorizeView> *@
+    <AuthorizeView>
         <MudNavLink Href="/groups" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.SportsSoccer">@Localizer["MyGroups"]</MudNavLink>
         <MudDivider />
-@*     </AuthorizeView> *@
+    </AuthorizeView>
 
     <MudNavLink Href="/about" Match="NavLinkMatch.Prefix" Icon="@Icons.Material.Filled.Info">@Localizer["About"]</MudNavLink>
     <MudDivider />

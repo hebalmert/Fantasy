@@ -6,9 +6,11 @@ using Microsoft.Extensions.Localization;
 using Fantasy.Frontend.Shared;
 using MudBlazor;
 using System.Net;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Fantasy.Frontend.Pages.Countries;
 
+[Authorize(Roles = "Admin")]
 public partial class CountriesIndex
 {
     private List<Country>? Countries { get; set; }
