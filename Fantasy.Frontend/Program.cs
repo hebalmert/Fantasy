@@ -2,6 +2,7 @@ using CurrieTechnologies.Razor.SweetAlert2;
 using Fantasy.Frontend;
 using Fantasy.Frontend.AuthenticationProviders;
 using Fantasy.Frontend.Repositories;
+using Fantasy.Frontend.Services;
 using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
@@ -28,5 +29,12 @@ void ConfigureServices(IServiceCollection services)
 
     //para la autenticacion de usuarios
     services.AddAuthorizationCore();
-    services.AddScoped<AuthenticationStateProvider, AuthenticationProviderTest>();
+    //services.AddScoped<AuthenticationStateProvider, AuthenticationProviderTest>();
+
+    //Implementacion del Sistema de Validacion de Usuarios
+    services.AddScoped<AuthenticationProviderJWT>();
+    services.AddScoped<AuthenticationStateProvider, AuthenticationProviderJWT>(
+        x => x.GetRequiredService<AuthenticationProviderJWT>());
+    services.AddScoped<ILoginService, AuthenticationProviderJWT>(
+        x => x.GetRequiredService<AuthenticationProviderJWT>());
 }

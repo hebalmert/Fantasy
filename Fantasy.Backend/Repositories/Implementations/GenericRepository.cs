@@ -3,7 +3,6 @@ using Fantasy.Backend.Helpers;
 using Fantasy.Backend.Repositories.Interfaces;
 using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Responses;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Fantasy.Backend.Repositories.Implementations;

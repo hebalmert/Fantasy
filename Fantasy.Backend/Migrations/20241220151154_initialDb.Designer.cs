@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Fantasy.Backend.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241216012215_initialDb")]
+    [Migration("20241220151154_initialDb")]
     partial class initialDb
     {
         /// <inheritdoc />

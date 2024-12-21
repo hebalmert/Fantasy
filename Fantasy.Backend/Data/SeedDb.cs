@@ -53,6 +53,10 @@ public class SeedDb
 
             await _userUnitOfWork.AddUserAsync(user, "123456");
             await _userUnitOfWork.AddUserToRoleAsync(user, userType.ToString());
+
+            //Crear el token y confirmar la cuenta para activar
+            var token = await _userUnitOfWork.GenerateEmailConfirmationTokenAsync(user);
+            await _userUnitOfWork.ConfirmEmailAsync(user, token);
         }
 
         return user;

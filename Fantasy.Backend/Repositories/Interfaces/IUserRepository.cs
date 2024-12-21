@@ -1,13 +1,26 @@
 ﻿using Fantasy.Shared.DTOs;
 using Fantasy.Shared.Entities;
-using Fantasy.Shared.Responses;
 using Microsoft.AspNetCore.Identity;
 
 namespace Fantasy.Backend.Repositories.Interfaces
 {
     public interface IUserRepository
     {
+        Task<SignInResult> LoginAsync(LoginDTO model);
+
+        Task LogoutAsync();
+
         Task<User> GetUserAsync(string email);
+
+        Task<string> GenerateEmailConfirmationTokenAsync(User user);
+
+        Task<IdentityResult> ConfirmEmailAsync(User user, string token);
+
+        Task<string> GeneratePasswordResetTokenAsync(User user);
+
+        Task<IdentityResult> ResetPasswordAsync(User user, string token, string password);
+
+        Task<IdentityResult> ChangePasswordAsync(User user, string currentPassword, string newPassword);
 
         Task<IdentityResult> AddUserAsync(User user, string password);
 
